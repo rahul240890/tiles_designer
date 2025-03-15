@@ -13,10 +13,11 @@ import TableCollections from "./TableCollections";
 import ParentCard from "@/app/components/shared/ParentCard";
 import { useRouter } from "next/navigation";
 import { CollectionResponse } from "../../types/collection";
+import BlankCard from "@/app/components/shared/BlankCard";
 
 const CollapsibleTable = () => {
     const [collections, setCollections] = useState<CollectionResponse[]>([]);
-    const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
+    const [viewMode, setViewMode] = useState<"grid" | "table">("table");
     const [searchQuery, setSearchQuery] = useState("");
     const router = useRouter();
 
@@ -48,7 +49,7 @@ const CollapsibleTable = () => {
 
     return (
         <PageContainer title="Tile Collections" description="Manage your tile collections">
-            <ParentCard title="Manage Collections">
+            <BlankCard>
                 <Box>
                     <Stack direction="row" spacing={2} justifyContent="space-between" alignItems="center" sx={{ mb: 3 }}>
                         <TextField
@@ -76,7 +77,7 @@ const CollapsibleTable = () => {
                             </Button>
                             
 
-                            <IconButton onClick={() => setViewMode(viewMode === "grid" ? "table" : "grid")}>
+                            <IconButton onClick={() => setViewMode(viewMode === "table" ? "grid" : "table")}>
                                 {viewMode === "grid" ? (
                                     <TableChartIcon fontSize="large" sx={{ color: "#ff9800" }} />
                                 ) : (
@@ -100,7 +101,7 @@ const CollapsibleTable = () => {
                         />
                     )}
                 </Box>
-            </ParentCard>
+            </BlankCard>
         </PageContainer>
     );
 };

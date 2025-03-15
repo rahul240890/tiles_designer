@@ -160,9 +160,8 @@ const CreateCollection = () => {
   return (
     <PageContainer title="New Collection" description="Create a new tile collection">
       <ParentCard title="Create New Collection">
-
         <form onSubmit={formik.handleSubmit}>
-          <Grid container rowSpacing={0} columnSpacing={5}>
+          <Grid container rowSpacing={0} columnSpacing={2}>
 
             {/* ✅ Collection Name */}
             <Grid item xs={6}>
@@ -170,6 +169,7 @@ const CreateCollection = () => {
               <CustomTextField
                 fullWidth
                 name="name"
+                placeholder="Enter collection name"
                 value={formik.values.name}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -191,6 +191,7 @@ const CreateCollection = () => {
                     {...params}
                     fullWidth
                     error={formik.touched.category_id && Boolean(formik.errors.category_id)}
+                    placeholder="Select category"
                     helperText={formik.touched.category_id && formik.errors.category_id}
                   />
                 )}
@@ -212,6 +213,7 @@ const CreateCollection = () => {
                     <CustomTextField
                       {...params}
                       fullWidth
+                      placeholder="Select tile size"
                       error={formik.touched.size_id && Boolean(formik.errors.size_id)}
                       helperText={formik.touched.size_id && formik.errors.size_id}
                     />
@@ -233,7 +235,7 @@ const CreateCollection = () => {
                   getOptionLabel={(option) => option.name}
                   value={attributes.series.find((s) => s.id === formik.values.series_id) || null}
                   onChange={(_, newValue) => formik.setFieldValue("series_id", newValue ? newValue.id : null)}
-                  renderInput={(params) => <CustomTextField {...params} fullWidth />}
+                  renderInput={(params) => <CustomTextField {...params} fullWidth placeholder="Select or add a series"  />}
                 />
                 <IconButton onClick={() => handleOpenModal("series")}>
                   <AddIcon />
@@ -251,7 +253,7 @@ const CreateCollection = () => {
                   getOptionLabel={(option) => option.name}
                   value={attributes.materials.find((m) => m.id === formik.values.material_id) || null}
                   onChange={(_, newValue) => formik.setFieldValue("material_id", newValue ? newValue.id : null)}
-                  renderInput={(params) => <CustomTextField {...params} fullWidth />}
+                  renderInput={(params) => <CustomTextField {...params} fullWidth placeholder="Select or add material" />}
                 />
                 <IconButton onClick={() => handleOpenModal("materials")}>
                   <AddIcon />
@@ -269,7 +271,7 @@ const CreateCollection = () => {
                   getOptionLabel={(option) => option.name}
                   value={attributes.finishes.find((f) => f.id === formik.values.finish_id) || null}
                   onChange={(_, newValue) => formik.setFieldValue("finish_id", newValue ? newValue.id : null)}
-                  renderInput={(params) => <CustomTextField {...params} fullWidth />}
+                  renderInput={(params) => <CustomTextField {...params} fullWidth placeholder="Select or add finish" />}
                 />
                 <IconButton onClick={() => handleOpenModal("finishes")}>
                   <AddIcon />
@@ -286,7 +288,7 @@ const CreateCollection = () => {
                 getOptionLabel={(option) => option.name}
                 value={attributes.suitable_places.filter((p) => formik.values.suitable_places.includes(p.id))}
                 onChange={(_, newValue) => formik.setFieldValue("suitable_places", newValue.map((p) => p.id))}
-                renderInput={(params) => <CustomTextField {...params} fullWidth />}
+                renderInput={(params) => <CustomTextField {...params} fullWidth placeholder="Select suitable places" />}
               />
             </Grid>
             {/* ✅ Description */}
@@ -295,6 +297,7 @@ const CreateCollection = () => {
               <CustomTextField
                 fullWidth
                 name="description"
+                placeholder="Enter collection description"
                 value={formik.values.description}
                 onChange={formik.handleChange}
                 multiline

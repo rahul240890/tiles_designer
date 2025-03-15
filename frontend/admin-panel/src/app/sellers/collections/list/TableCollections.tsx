@@ -18,10 +18,14 @@ import {
     IconButton,
 } from "@mui/material";
 import { useNotificationStore } from "@/store/notificationStore";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useRouter } from "next/navigation";
 import { deleteCollection, toggleCollectionStatus, toggleFavoriteCollection } from "../../api/collection";
 import { Attribute, CollectionResponse } from "../../types/collection";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
+
 
 interface TableCollectionsProps {
     collections: CollectionResponse[];
@@ -162,15 +166,24 @@ const TableCollections: React.FC<TableCollectionsProps> = ({ collections, setCol
                                 </TableCell>
                                 <TableCell>
                                     <Stack direction={"row"} spacing={1}>
-                                        <Button size="small" variant="contained" color="primary" onClick={() => router.push(`/sellers/collections/update/${collection.id}`)}>
-                                            Edit
+                                        <Button size="small" variant="contained" color="success" onClick={() => router.push(`/sellers/collections/tiles/${collection.id}`)}>
+                                            Manage Tiles
                                         </Button>
+                                        <Button size="small" variant="contained" color="info" onClick={() => router.push(`/sellers/collections/upload/${collection.id}`)}>
+                                            Upload Tiles
+                                        </Button>
+
                                         <Button size="small" variant="contained" color="secondary" onClick={() => openDuplicateModal(collection.id)}>
                                             Duplicate
                                         </Button>
-                                        <Button size="small" variant="contained" color="error" onClick={() => openDeleteModal(collection.id)}>
-                                            Delete
-                                        </Button>
+                                        <IconButton size="small" color="primary" onClick={() => router.push(`/sellers/collections/update/${collection.id}`)}>
+                                            <ModeEditOutlineOutlinedIcon />
+                                        </IconButton>
+
+                                        <IconButton size="small" color="error" onClick={() => openDeleteModal(collection.id)}>
+                                            <DeleteIcon />
+                                        </IconButton>
+
                                     </Stack>
                                 </TableCell>
                             </TableRow>

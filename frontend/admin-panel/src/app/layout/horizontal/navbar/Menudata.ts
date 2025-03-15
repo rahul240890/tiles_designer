@@ -36,7 +36,7 @@ export const getMenuItems = async (): Promise<MenuItem[]> => {
         id: uniqueId(),
         title: "Collections",
         icon: IconFolder,
-        href: "/sellers/collections/list", // Optional, can be removed if not needed
+        href: "/sellers/collections/", // Optional, can be removed if not needed
         children: [
           {
             id: uniqueId(),
@@ -58,8 +58,25 @@ export const getMenuItems = async (): Promise<MenuItem[]> => {
               id: uniqueId(),
               title: collection.name,
               icon: IconPoint,
-              href: `/sellers/collections_tiles/tiles/${collection.id}`,
+              href: `/sellers/collections/tiles/${collection.id}`,
             })),
+          },
+          {
+            id: uniqueId(),
+            title: "Upload Tiles",
+            icon: IconPoint,
+            children: menuData.collections.map((collection) => ({
+              id: uniqueId(),
+              title: collection.name,
+              icon: IconPoint,
+              href: `/sellers/collections/upload/${collection.id}`,
+            })),
+          },
+          {
+            id: uniqueId(),
+            title: "Favorite Collections",
+            icon: IconPoint,
+            href: "/sellers/collections/favorite",
           },
         ],
       },
@@ -67,25 +84,13 @@ export const getMenuItems = async (): Promise<MenuItem[]> => {
         id: uniqueId(),
         title: "Manage Tiles",
         icon: IconLayersIntersect,
-        href: "/sellers/all_tiles/view", // Optional
+        href: "/sellers/all_tiles/", // Optional
         children: [
           {
             id: uniqueId(),
             title: "All Tiles",
             icon: IconPoint,
-            href: "/company/tiles/list",
-          },
-          {
-            id: uniqueId(),
-            title: "Add New Tile",
-            icon: IconPoint,
-            href: "/company/tiles/add",
-          },
-          {
-            id: uniqueId(),
-            title: "Import Tiles (CSV/PDF)",
-            icon: IconPoint,
-            href: "/company/tiles/import",
+            href: "/sellers/all_tiles/view",
           },
           {
             id: uniqueId(),
@@ -95,7 +100,7 @@ export const getMenuItems = async (): Promise<MenuItem[]> => {
               id: uniqueId(),
               title: c.name,
               icon: IconPoint,
-              href: `/company/tiles/category/${c.id}`,
+              href: `/sellers/all_tiles/view/${c.id}`,
             })),
           },
           {
